@@ -1,0 +1,9 @@
+.afficheur {
+  padding: 0.5em;
+  grid-column: 1/-1;
+  &.expression {
+    font-size: 0.7em;
+    opacity: 0.5;
+    padding-block: 0.2em;
+  }
+}
