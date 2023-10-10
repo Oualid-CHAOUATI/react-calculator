@@ -128,7 +128,7 @@ function App() {
         <BtnNumber
           className={"special-btn"}
           label={"x"}
-          action={() => applyOperator("*")}
+          action={() => applyOperator("x")}
         />
         <BtnNumber label={7} action={concatNumber} />
         <BtnNumber label={8} action={concatNumber} />
@@ -174,7 +174,7 @@ const operate = ({ operator, recentValue, currentValue }) => {
       return recentValue + currentValue;
     case "-":
       return recentValue - currentValue;
-    case "*":
+    case "x":
       return recentValue * currentValue;
     case "/":
       return recentValue / currentValue;
