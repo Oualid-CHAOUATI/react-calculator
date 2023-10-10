@@ -1,4 +1,4 @@
-import "./afficheur.styles.scss";
+import "./Afficheur.styles.scss";
 export default function Afficher({ children, className = null }) {
   return <div className={`afficheur ${className}`}> {children}</div>;
 }
