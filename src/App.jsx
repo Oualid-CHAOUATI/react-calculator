@@ -4,6 +4,8 @@ import { BtnNumber } from "./Components/BtnNumber/BtnNumber";
 import Afficher from "./Components/Afficheur/Afficheur";
 import { SwitchBtn } from "./Components/SwitchBtn/SwitchBtn";
 
+function calcReducer(state, action) {}
+
 function App() {
   const [typingNumberString1, setTypingNumberString1] = useState("");
   const [typingNumberString2, setTypingNumberString2] = useState("");
