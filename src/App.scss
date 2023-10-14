@@ -38,7 +38,7 @@ body {
   $size: 2.5em;
   display: grid;
   grid-template-columns: repeat(4, #{$size});
-  grid-template-rows: 1em $size $size $size $size $size $size;
+  grid-template-rows: minmax(1.5em, auto) minmax(2.5em, auto) repeat(5, $size);
   gap: 0.1em;
   padding-top: 2em;
   border: 0.5em solid #000;
