@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useCallback, useReducer, useState } from "react";
 import "./App.scss";
 import { BtnNumber } from "./Components/BtnNumber/BtnNumber";
 import Afficher from "./Components/Afficheur/Afficheur";
@@ -140,22 +140,38 @@ const calc = ({ n1, n2, operation }) => {
 
   return result;
 };
+const operate = ({ operation, recentValue, currentValue }) => {
+  switch (operation?.trim()) {
+    case "+":
+      return recentValue + currentValue;
+    case "-":
+      return recentValue - currentValue;
+    case "x":
+      return recentValue * currentValue;
+    case "/":
+      return recentValue / currentValue;
+    case "%":
+      return recentValue % currentValue;
+  }
+};
 function App() {
   const [state, dispatch] = useReducer(calcReducer, INITIAL_STATE);
 
-  const applyOperation = (operation) => {
+  const applyOperation = useCallback((operation) => {
     dispatch({ type: CALC_ACTIONS.OPERATE, payload: operation });
-  };
+  }, []);
 
-  const addDigitOrPoint = (value) => {
+  const addDigitOrPoint = useCallback((value) => {
     dispatch({ type: CALC_ACTIONS.TYPE, payload: value });
-  };
-  const toggleIsOn = () => {
+  }, []);
+  const toggleIsOn = useCallback(() => {
     dispatch({ type: CALC_ACTIONS.TOGGLE_PHONE });
-  };
-  const clearCalc = () => {
+  }, []);
+  const clearCalc = useCallback(() => {
     dispatch({ type: CALC_ACTIONS.CLEAR });
-  };
+  }, []);
+
+
   return (
     <div className={`calculator ${state.isOn && "on"}`}>
       <SwitchBtn isOn={state.isOn} setIsOn={toggleIsOn} />
@@ -223,17 +239,4 @@ function App() {
 
 export default App;
 
-const operate = ({ operation, recentValue, currentValue }) => {
-  switch (operation?.trim()) {
-    case "+":
-      return recentValue + currentValue;
-    case "-":
-      return recentValue - currentValue;
-    case "x":
-      return recentValue * currentValue;
-    case "/":
-      return recentValue / currentValue;
-    case "%":
-      return recentValue % currentValue;
-  }
-};
+
