@@ -153,6 +153,9 @@ function App() {
   const toggleIsOn = () => {
     dispatch({ type: CALC_ACTIONS.TOGGLE_PHONE });
   };
+  const clearCalc = () => {
+    dispatch({ type: CALC_ACTIONS.CLEAR });
+  };
   return (
     <div className={`calculator ${state.isOn && "on"}`}>
       <SwitchBtn isOn={state.isOn} setIsOn={toggleIsOn} />
@@ -164,17 +167,19 @@ function App() {
         <BtnNumber
           className={"clear-btn special-btn"}
           label={"c"}
-          action={() => dispatch({ type: CALC_ACTIONS.CLEAR })}
+          action={clearCalc}
         />
         <BtnNumber
           className={"special-btn"}
           label={"/"}
-          action={() => applyOperation("/")}
+          actionParam={"/"}
+          action={applyOperation}
         />
         <BtnNumber
           className={"special-btn"}
           label={"x"}
-          action={() => applyOperation("x")}
+          actionParam={"x"}
+          action={applyOperation}
         />
         <BtnNumber label={7} action={addDigitOrPoint} />
         <BtnNumber label={8} action={addDigitOrPoint} />
@@ -182,7 +187,8 @@ function App() {
         <BtnNumber
           className={"special-btn"}
           label={"-"}
-          action={() => applyOperation("-")}
+          actionParam={"-"}
+          action={applyOperation}
         />
         <BtnNumber label={4} action={addDigitOrPoint} />
         <BtnNumber label={5} action={addDigitOrPoint} />
@@ -190,7 +196,8 @@ function App() {
         <BtnNumber
           className={"special-btn"}
           label={"+"}
-          action={() => applyOperation("+")}
+          actionParam={"+"}
+          action={applyOperation}
         />
         <BtnNumber label={1} action={addDigitOrPoint} />
         <BtnNumber label={2} action={addDigitOrPoint} />
@@ -198,12 +205,14 @@ function App() {
         <BtnNumber
           className={"special-btn equals"}
           label={"="}
-          action={() => applyOperation("=")}
+          actionParam={"="}
+          action={applyOperation}
         />
         <BtnNumber
           className={"special-btn"}
           label={"%"}
-          action={() => applyOperation("%")}
+          actionParam={"%"}
+          action={applyOperation}
         />
         <BtnNumber label={0} action={addDigitOrPoint} />
         <BtnNumber label={"."} action={addDigitOrPoint} />
